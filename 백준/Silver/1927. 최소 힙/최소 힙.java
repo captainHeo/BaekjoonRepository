@@ -13,7 +13,7 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
         
         //큐 우선순위를 가장 작은 값 순서대로
-        PriorityQueue<Integer> queue = new PriorityQueue<>(Comparator.comparingInt(x -> x));
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
 
         for(int i = 0 ; i < N; i++){
             int x = Integer.parseInt(br.readLine());
