@@ -4,27 +4,32 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
-        final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int questionSize = Integer.parseInt(br.readLine());
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
+        StringTokenizer st;
 
-        for (int i = 0; i < questionSize; i++) {
-            String curStr = br.readLine();
+        int N = Integer.parseInt(br.readLine());
 
-            if (curStr.equals("P=NP")) {
+        String s;
+        while(N-- >0) {
+             s = br.readLine();
+
+            if(s.equals("P=NP")) {
+
                 sb.append("skipped\n");
             } else {
-                StringTokenizer st = new StringTokenizer(curStr, "+");
-                int lNum = Integer.parseInt(st.nextToken());
-                int rNum = Integer.parseInt(st.nextToken());
-                sb.append((lNum + rNum) + "\n");
+
+                st = new StringTokenizer(s,"+");
+
+                int a = Integer.parseInt(st.nextToken());
+                int b = Integer.parseInt(st.nextToken());
+
+                sb.append(a+b + "\n");
             }
+
         }
 
         System.out.println(sb);
-
     }
 }
