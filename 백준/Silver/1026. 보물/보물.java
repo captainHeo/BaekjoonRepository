@@ -2,41 +2,40 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.StringTokenizer;
- 
+import java.util.*;
+
 public class Main {
- 
+
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
- 
+        ArrayList<Integer> A = new ArrayList<>();
+        ArrayList<Integer> B = new ArrayList<>();
+
         int N = Integer.parseInt(br.readLine());
-        int[] A = new int[N];
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
-            A[i] = Integer.parseInt(st.nextToken());
+
+        st = new StringTokenizer(br.readLine(), " ");
+        for(int i=0; i<N; i++) {
+
+            A.add(Integer.parseInt(st.nextToken()));
         }
-        Arrays.sort(A); // A를 오름차순으로 정렬
- 
-        Integer[] B = new Integer[N];
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
-            B[i] = Integer.parseInt(st.nextToken());
+
+        st = new StringTokenizer(br.readLine(), " ");
+        for(int i=0; i<N; i++) {
+
+            B.add(Integer.parseInt(st.nextToken()));
         }
-        Arrays.sort(B, Comparator.reverseOrder()); // B를 내림차순으로 정렬
- 
-        int ans = 0;
-        for (int i = 0; i < N; i++) { // A의 가장 작은 값과 B의 가장 큰 값을 곱해서 더해 나감.
-            ans += A[i] * B[i];
+
+        Collections.sort(A);
+
+        int S = 0;
+        for(int i=0; i<N; i++) {
+
+            S += A.get(i) * Collections.max(B);
+            B.remove(Collections.max(B));
         }
- 
-        bw.write(ans + "\n");
-        bw.flush();
-        bw.close();
-        br.close();
+
+        System.out.println(S);
     }
- 
+
 }
