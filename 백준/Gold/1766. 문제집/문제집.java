@@ -14,11 +14,13 @@ public class Main {
         //먼저 푸는 것이 좋은 문제에 대한 정보의 개수
         int M = Integer.parseInt(st.nextToken());
 
+        //그래프 생성
         ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
         for(int i=0; i<N+1; i++) {
             graph.add(new ArrayList<Integer>());
         }
 
+        //각 문제에 대한 진입차수 배열
         int [] edgeCount = new int[N+1];
 
         int A, B;
@@ -35,9 +37,10 @@ public class Main {
             edgeCount[B]++;
         }
 
+        //번호가 낮은 문제가 쉬운 문제, 쉬운 문제부터 풀어야 하므로 PriorityQueue 사용
         Queue<Integer> q = new PriorityQueue<>();
 
-        //진입 차수가 0인거 큐에
+        //진입 차수가 0 노드는 큐에 추가
         for(int i=1; i<N+1; i++) {
             if(edgeCount[i] == 0) {
                 q.offer(i);
@@ -45,15 +48,14 @@ public class Main {
         }
 
         while (!q.isEmpty()) {
+            //진입 차수 0인 문제 꺼내기
             int nodeNum = q.poll();
-
-            //큐에서 꺼낸 먼저 푸는 것이 좋은 문제 출력
+            
             sb.append(nodeNum+" ");
 
-            //해당 문제를 풀은 후 풀 수 있는 문제 리스트 갖고옴
+            //해당 문제를 풀은 후 풀 수 있는 문제 리스트 갖고오기
             List<Integer> list = graph.get(nodeNum);
-
-            Collections.sort(list);
+            
             for(int i=0; i< list.size(); i++) {
                 //진입 차수 감소
                 edgeCount[list.get(i)]--;
